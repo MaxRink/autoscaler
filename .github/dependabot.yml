@@ -4,7 +4,7 @@ updates:
   directory: "/vertical-pod-autoscaler"
   schedule:
     interval: daily
-  open-pull-requests-limit: 0 # setting this to 0 means only allowing security updates, see https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#open-pull-requests-limit
+  open-pull-requests-limit: 5
   labels:
     - "vertical-pod-autoscaler"
 - package-ecosystem: docker
@@ -14,3 +14,75 @@ updates:
   open-pull-requests-limit: 10
   labels:
     - "vertical-pod-autoscaler"
+- package-ecosystem: docker
+  directories:
+  - /addon-resizer
+  - /balancer
+  - /builder
+  - /cluster-autoscaler
+  - /cluster-autoscaler/cloudprovider/aws/aws-sdk-go/awstesting/sandbox
+  - /cluster-autoscaler/cloudprovider/bizflycloud/gobizfly
+  - /vertical-pod-autoscaler/pkg/admission-controller
+  - /vertical-pod-autoscaler/pkg/recommender
+  - /vertical-pod-autoscaler/pkg/updater
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 5
+  groups:
+    routine-updates:
+      patterns:
+      - '*'
+      update-types:
+      - minor
+      - patch
+- package-ecosystem: github-actions
+  directory: /
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 5
+  groups:
+    routine-updates:
+      patterns:
+      - '*'
+      update-types:
+      - minor
+      - patch
+- package-ecosystem: gomod
+  directories:
+  - /balancer
+  - /cluster-autoscaler
+  - /vertical-pod-autoscaler/e2e
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 5
+  groups:
+    routine-updates:
+      patterns:
+      - '*'
+      update-types:
+      - minor
+      - patch
+- package-ecosystem: helm
+  directory: /charts/cluster-autoscaler
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 5
+  groups:
+    routine-updates:
+      patterns:
+      - '*'
+      update-types:
+      - minor
+      - patch
+- package-ecosystem: pre-commit
+  directory: /
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 5
+  groups:
+    routine-updates:
+      patterns:
+      - '*'
+      update-types:
+      - minor
+      - patch
