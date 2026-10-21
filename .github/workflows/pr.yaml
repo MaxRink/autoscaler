@@ -32,7 +32,7 @@ jobs:
       - name: Fetch history
         run: git fetch --prune --unshallow
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.0.1
+        uses: helm/chart-testing-action@v2.9.0
       - name: Run chart-testing (lint)
         run: ct lint
       # Only build a kind cluster if there are chart changes to test.
@@ -45,7 +45,7 @@ jobs:
           fi
       - if: steps.list-changed.outputs.changed == 'true'
         name: Create kind cluster
-        uses: helm/kind-action@v1.1.0
+        uses: helm/kind-action@v1.15.1
       - if: steps.list-changed.outputs.changed == 'true'
         name: Run chart-testing (install)
         run: ct install
